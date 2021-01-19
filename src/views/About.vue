@@ -11,7 +11,7 @@
           <ion-title size="large">เกี่ยวกับเรา</ion-title>
         </ion-toolbar>
       </ion-header>
-    
+
       <!-- <ExploreContainer name="เกี่ยวกับเรา" /> -->
       <ion-text color="primary">
         เกี่ยวกับเรา
@@ -20,15 +20,21 @@
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-button @click="presentAlert" expand="full">Show Alert</ion-button>
+            <ion-button @click="presentAlert" expand="full"
+              >Show Alert</ion-button
+            >
           </ion-col>
           <ion-col>
-            <ion-button @click="confirmAlert" expand="block" color="success">Show Comfirm</ion-button>
+            <ion-button @click="confirmAlert" expand="block" color="success"
+              >Show Comfirm</ion-button
+            >
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col class="center_item">
-            <ion-button @click="inputAlert" shape="round" color="warning">Show input</ion-button>
+            <ion-button @click="inputAlert" shape="round" color="warning"
+              >Show input</ion-button
+            >
           </ion-col>
         </ion-row>
         <ion-row>
@@ -67,48 +73,59 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      
-      
-
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
-
-import {IonItem,IonList,IonGrid, IonLabel, IonCheckbox,IonRow,IonCol,IonText,IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, alertController } from '@ionic/vue';
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonButton,
+  alertController,
+} from "@ionic/vue";
 // import ExploreContainer from '@/components/ExploreContainer.vue';
 
-export default  {
-  name: 'About',
-  components: { IonList,IonGrid,IonItem, IonLabel, IonCheckbox,IonRow,IonCol,IonText,IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonButton },
+export default {
+  name: "About",
+  components: {
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonPage,
+    IonButton,
+  },
   setup() {
     const datas = [
       {
         _id: 1,
         name: "Morakot Thongprom",
-        age: 40
+        age: 40,
       },
       {
         _id: 2,
         name: "Anotahi Tddfhaf",
-        age: 38
+        age: 38,
       },
       {
         _id: 3,
         name: "asdfdsg Tddfhaf",
-        age: 30
+        age: 30,
       },
       {
         _id: 4,
         name: "gfdhth Tddfhaf",
-        age: 25
+        age: 25,
       },
       {
         _id: 5,
         name: "dsfdsghah Tddfhaf",
-        age: 70
-      }
+        age: 70,
+      },
     ];
 
     return { datas };
@@ -120,18 +137,18 @@ export default  {
         inputs: [
           {
             name: "fullname",
-            placeholder: "กรอกชื่อ-นามสกุล"
+            placeholder: "กรอกชื่อ-นามสกุล",
           },
           {
             name: "tel",
             placeholder: "กรอกเบอร์โทรศัพท์",
-            type: "number"
+            type: "number",
           },
           {
             name: "birthday",
             // placeholder: "ระบุวัน-เดือน-ปีเกิด",
-            type: "date"
-          }
+            type: "date",
+          },
         ],
         buttons: [
           {
@@ -140,15 +157,15 @@ export default  {
               console.log(value.fullname);
               console.log(value.tel);
               console.log(value.birthday);
-            }
+            },
           },
           {
             text: "ยกเลิก",
             handler: () => {
-              console.log("ยกเลิก")
-            }
-          }
-        ]
+              console.log("ยกเลิก");
+            },
+          },
+        ],
       });
       return alert.present();
     },
@@ -163,7 +180,7 @@ export default  {
 
       return alert.present();
     },
-    async confirmAlert(){
+    async confirmAlert() {
       const alert = await alertController.create({
         header: "แจ้งเตือน",
         message: "ยืนยันการสั่งซื้อ",
@@ -171,32 +188,30 @@ export default  {
           {
             text: "ตกลง",
             handler: () => {
-              console.log("ตกลง")
-            }
+              console.log("ตกลง");
+            },
           },
           {
             text: "ยกเลิก",
             handler: () => {
-              console.log("ยกเลิก")
-            }
-          }
-        ]
+              console.log("ยกเลิก");
+            },
+          },
+        ],
       });
       return alert.present();
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
+.center_item {
+  display: flex;
+  justify-content: center;
+}
 
-  .center_item {
-    display: flex;
-    justify-content: center;
-  }
-
-  .margin_left {
-    margin-left: 20px;
-  }
-
+.margin_left {
+  margin-left: 20px;
+}
 </style>
