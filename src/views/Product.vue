@@ -12,12 +12,29 @@
         </ion-toolbar>
       </ion-header>
 
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-item v-for="(data, index) in products" :key="index">
+              <ion-text>รหัสสินค้า : {{ data.p_id }}</ion-text>
+              <ion-text>ชื่อสินค้า : {{ data.p_name }}</ion-text>
+              <ion-text>ราคาขายสินค้า : {{ data.p_price_sell }}</ion-text>
+              <ion-text>ราคาทุนสินค้า : {{ data.p_price_cost }}</ion-text>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
 import {
+  IonRow,
+  IonCol,
+  IonList,
+  IonText,
+  IonItem,
   IonPage,
   IonHeader,
   IonToolbar,
@@ -25,19 +42,30 @@ import {
   IonContent,
 } from "@ionic/vue";
 
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   name: "Product",
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
-  setup() {
+  components: {
+    IonRow,
+    IonCol,
+    IonList,
+    IonText,
+    IonItem,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonPage,
+  },
+  data() {
     return {
       products: null,
     };
   },
-  async mounted() {
-    const data = await axios.get("http://localhost:3000/products");
-    console.log(data.data);
-  }
+  async ionViewWillEnter() {
+    const res = await axios.get("http://localhost:3000/products");
+    this.products = res.data;
+  },
 };
 </script>
