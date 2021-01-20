@@ -11,18 +11,33 @@
           <ion-title size="large">สินค้า</ion-title>
         </ion-toolbar>
       </ion-header>
-      
-      <ExploreContainer name="สินค้า" />
+
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+} from "@ionic/vue";
 
-export default  {
-  name: 'Product',
-  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
-}
+import axios from 'axios';
+
+export default {
+  name: "Product",
+  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
+  setup() {
+    return {
+      products: null,
+    };
+  },
+  async mounted() {
+    const data = await axios.get("http://localhost:3000/products");
+    console.log(data.data);
+  }
+};
 </script>
